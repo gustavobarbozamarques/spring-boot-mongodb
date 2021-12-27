@@ -1,0 +1,37 @@
+version: '3'
+
+services:
+  app:
+    image: 'spring-boot-jpa-mongodb'
+    build:
+      context: .
+    container_name: spring-boot-jpa-mongodb
+    ports:
+      - 8080:8080
+    depends_on:
+      - db
+    environment:
+      - ENV_MONGODB_URI=mongodb://admin:123456@db:27017/products?authSource=admin
+    networks:
+      - spring-boot-mongodb-network
+
+  db:
+    image: 'mongo'
+    ports:
+      - 27017:27017
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=admin
+      - MONGO_INITDB_ROOT_PASSWORD=123456
+    networks:
+      - spring-boot-mongodb-network
+
+  sonarqube:
+    image: 'sonarqube'
+    ports:
+      - 9000:9000
+    networks:
+      - spring-boot-mongodb-network
+
+networks:
+  spring-boot-mongodb-network:
+    driver: bridge
