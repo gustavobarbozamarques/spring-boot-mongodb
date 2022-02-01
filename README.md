@@ -1,4 +1,4 @@
-# Spring Boot JPA
+# Spring Boot MongoDB
 
 This project demonstrates a simple microservice that uses Spring Boot and MongoDB database.
 

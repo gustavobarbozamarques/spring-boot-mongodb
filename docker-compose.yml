@@ -2,10 +2,10 @@ version: '3'
 
 services:
   app:
-    image: 'spring-boot-jpa-mongodb'
+    image: 'spring-boot-mongodb'
     build:
       context: .
-    container_name: spring-boot-jpa-mongodb
+    container_name: spring-boot-mongodb
     ports:
       - 8080:8080
     depends_on:
