@@ -68,6 +68,17 @@ class ProductControllerTest {
     }
 
     @Test
+    void testGetByIdShouldReturnBadRequestIfBlankId() throws Exception {
+        var product = ProductResponseDTOMock.get();
+        when(productService.getById(product.getId()))
+                .thenThrow(new ResponseStatusException(HttpStatus.NOT_FOUND, "Product not found."));
+        this.mockMvc
+                .perform(get(String.format("/v1/products/%s", "     ")))
+                .andDo(print())
+                .andExpect(status().isBadRequest());
+    }
+
+    @Test
     void testSaveShouldReturnSuccessIfValid() throws Exception {
         var productDTO = ProductRequestDTOMock.get();
         this.mockMvc

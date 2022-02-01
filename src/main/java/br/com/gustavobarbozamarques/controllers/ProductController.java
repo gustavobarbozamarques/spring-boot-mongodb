@@ -42,7 +42,7 @@ public class ProductController {
     @ResponseStatus(HttpStatus.OK)
     @ApiOperation("Get product by id.")
     public ProductResponseDTO getById(
-            @Valid @PathVariable("productId") @NotBlank String productId
+            @PathVariable("productId") @NotBlank String productId
     ) {
         return productService.getById(productId);
     }
@@ -58,7 +58,7 @@ public class ProductController {
     @ResponseStatus(HttpStatus.OK)
     @ApiOperation("Update product by id.")
     public void update(
-            @Valid @PathVariable("productId") @NotBlank String productId,
+            @PathVariable("productId") @NotBlank String productId,
             @Valid @RequestBody ProductRequestDTO productRequestDTO
     ) {
         productService.save(productId, productRequestDTO);
@@ -68,7 +68,7 @@ public class ProductController {
     @ResponseStatus(HttpStatus.OK)
     @ApiOperation("Delete product by id.")
     public void delete(
-            @Valid @PathVariable("productId") @NotBlank String productId
+            @PathVariable("productId") @NotBlank String productId
     ) {
         productService.delete(productId);
     }
